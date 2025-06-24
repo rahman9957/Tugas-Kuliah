@@ -1,26 +1,25 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
+import socket
 
-hostName = "localhost"
-serverPort = 8080 #You can choose any available port; by default, it is 8000
+SERVER_HOST = '127.0.0.1'
+SERVER_PORT = 8080
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+server_socket.bind((SERVER_HOST, SERVER_PORT))
+server_socket.listen()
+print('Mendengarkan pada host & port : http://%s:%s'%(SERVER_HOST, SERVER_PORT))
+print('Tekan ctrl+C untuk keluar')
 
-
-class MyServer(BaseHTTPRequestHandler):  
-    def do_GET(self): 
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.end_headers()
-        self.wfile.write(bytes("<html><head><title>https://testserver.com</title></head>", "utf-8"))
-        self.wfile.write(bytes("<p>Request: %s</p>" % self.path, "utf-8"))
-        self.wfile.write(bytes("<body>", "utf-8"))
-        self.wfile.write(bytes("<p>This is an example web server.</p>", "utf-8"))
-        self.wfile.write(bytes("</body></html>", "utf-8"))
-
-if __name__ == "__main__":        
-    webServer = HTTPServer((hostName, serverPort), MyServer)
-    print("Server started http://%s:%s" % (hostName, serverPort))  #Server starts
-try:
-    webServer.serve_forever()
-except KeyboardInterrupt:
-    pass
-webServer.server_close()  #Executes when you hit a keyboard interrupt, closing the server
+while True: 
+    client_connection, client_address = server_socket.accept() 
+    request = client_connection.recv(1024).decode() 
+    print(request)
+    response_line = 'HTTP/1.1 200 OK'.encode()
+    entity_header = 'Content-Type: text/html'.encode()
+    file = open('index.html', 'r')
+    body = file.read().encode()
+    file.close()
+    enter = '\r\n'.encode() 
+    response = b''.join([response_line, enter, entity_header, enter, enter, body])
+    client_connection.send(response)
+    client_connection.close() 
+server_socket.close() 
