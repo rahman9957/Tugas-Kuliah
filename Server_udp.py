@@ -1,0 +1,1 @@
+uji lqgi sm3
