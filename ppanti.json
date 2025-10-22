@@ -1,22 +1,22 @@
 [
     {
-        "no_ktp": "123",
-        "nama": "Asep",
-        "gender": "Laki-laki"
+        "nomor_induk_panti": "11261",
+        "nama": "manda",
+        "jenis_kelamin": "perempuan"
     },
     {
-        "no_ktp": "456",
-        "nama": "Angga",
-        "gender": "L"
+       "nomor_induk_panti": "11262",
+       "nama": "tiara",
+       "jenis_kelamin": "perempuan"
     },
     {
-        "no_ktp": "789",
-        "nama": "Cici",
-        "gender": "Perempuan"
+       "nomor_induk_panti": "11263",
+       "nama": "rahul",
+       "jenis_kelamin": "L"
     },
     {
-        "no_ktp": "777",
-        "nama": "yudho",
-        "gender": "L"
+       "nomor_induk_panti": "11264",
+       "nama": "aini",
+       "jenis_kelamin": "perempuan"
     }
 ]
