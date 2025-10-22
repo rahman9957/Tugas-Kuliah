@@ -1,0 +1,22 @@
+[
+    {
+        "no_ktp": "123",
+        "nama": "Asep",
+        "gender": "Laki-laki"
+    },
+    {
+        "no_ktp": "456",
+        "nama": "Angga",
+        "gender": "L"
+    },
+    {
+        "no_ktp": "789",
+        "nama": "Cici",
+        "gender": "Perempuan"
+    },
+    {
+        "no_ktp": "777",
+        "nama": "yudho",
+        "gender": "L"
+    }
+]
