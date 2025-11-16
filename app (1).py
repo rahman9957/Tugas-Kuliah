@@ -1,23 +1,16 @@
 from flask import Flask, jsonify, request
-import json
+import pymysql
 
-app = Flask(__name__)
+app = Flask(_panti_)
 
-# function baca data dri file JSON-------------------------------
-def load_data():
-    with open('data.json', 'r') as file:
-        data = json.load(file)
-    return data
-
-# function tulis data ke file JSON-----------------------------
-def save_data(data):
-    with open('data.json', 'w') as file:
-        json.dump(data, file, indent=4)
+# koneksi mysql dari railway 
+def get_db():
+    return pymysql.connect(host="mysql.railway.internal",user="root",
 
 
-# Route tampilkan data--------------------------------------------
+data--------------------------------------------
 @app.route('/data', methods=['GET'])
-def get_data():
+def get_data()
     data = load_data()
     return jsonify(data)
 
@@ -42,4 +35,5 @@ def add_user():
 
 
 if __name__ == '__main__':
+
     app.run(debug=True)
