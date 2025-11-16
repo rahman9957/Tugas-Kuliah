@@ -51,3 +51,4 @@ return "Data berhasilditambahkan"
 if _panti_ == '__main__':
    app.run(debug=True)
 
+
