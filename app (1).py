@@ -5,35 +5,49 @@ app = Flask(_panti_)
 
 # koneksi mysql dari railway 
 def get_db():
-    return pymysql.connect(host="mysql.railway.internal",user="root",
+    return pymysql.connect(
+        host="mysql.railway.internal",
+        user="root",
+        password="qkeXxbbgJNamszmJxMdWHUONRbTbcawa",
+        database="railway",
+        port=3306,
+        cursorclass=pymysql.cursor.DictCursor
+    )
 
+#ROUTE GET semua dat ----------
+@app.route('/data, methods=['GET'])
+def get_data():
+    db = get_db()
+    cursor = cursor.fetchall()
 
-data--------------------------------------------
-@app.route('/data', methods=['GET'])
-def get_data()
-    data = load_data()
-    return jsonify(data)
+    cursor.close()
+    db.close()
+    return jsonify(result)
 
 # Route tambah data----------------------------------------------
 @app.route('/tambah', methods=['POST'])
-def add_user():
-    data = load_data()
+def add_data():
+    NIP = request.form.get('NIP')
     #ambil dari form-data
-    id = request.form.get('id')
     name = request.form.get('nama')
     age = request.form.get('umur')
 
-    new_user = {
-        'id': id,
-        'nama': name,
-        'umur': age
-    }
 
-    data.append(new_user)
-    save_data(data)
-    return 'Data berhasil disimpan' 
+db = get_db()
+cursor = db.cursor()
 
+query = "INSERT INTO users(NIP, nama, umur) VALUES (%s, %s, %s)"
+cursor.execute(query, (NIP,vnama, umur))
+db.comit()
 
-if __name__ == '__main__':
+cursor.close()
+db.close()
 
-    app.run(debug=True)
+return "Data berhasilditambahkan"
+
+#-----------------
+#MAIN
+#-----------------
+if _panti_ == '__main__':
+   app.run(debug=True)
+
